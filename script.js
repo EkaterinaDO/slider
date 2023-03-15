@@ -55,6 +55,7 @@ function initSlider(images, options) {
                     nextNumber = curNumber === lastIndex ? 0 : curNumber + 1;
                 }
                 moveSlider(nextNumber);
+                initActiveClass(nextNumber);
             });
         });
 
@@ -77,6 +78,8 @@ function initSlider(images, options) {
                 moveSlider(this.dataset.index);
                 dotsWrapper.querySelector(".active").classList.remove("active");
                 this.classList.add("active");
+                initActiveClass(this.dataset.index);
+                initlink();
 
             });
             dotsWrapper.appendChild(dot);
@@ -111,9 +114,15 @@ function initSlider(images, options) {
                     nextNumber = curNumber === lastIndex ? lastIndex : lastIndex;
                 }
                 moveSlider(nextNumber);
+                initActiveClass(nextNumber);
             });
         });
     };
+
+    function initActiveClass(index) {
+        document.querySelector(".slider__dots .active").classList.remove("active");
+        document.querySelector(`.slider__dots .n${index}`).classList.add("active");
+    }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
